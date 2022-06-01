@@ -7,15 +7,20 @@ NDN C++ library with eXperimental eXtensions.
 .. _GitHub: https://github.com/named-data/ndn-cxx
 
 
-Key Features
-============
 
-- Supports both :ref:`aiohttp-client` and :ref:`HTTP Server <aiohttp-web>`.
-- Supports both :ref:`Server WebSockets <aiohttp-web-websockets>` and
-  :ref:`Client WebSockets <aiohttp-client-websockets>` out-of-the-box
-  without the Callback Hell.
-- Web-server has :ref:`aiohttp-web-middlewares`,
-  :ref:`aiohttp-web-signals` and plugable routing.
+ndn-cxx Projects
+============
+ndn-cxx is a C++14 library implementing Named Data Networking (NDN) primitives that can be used to write various NDN applications. The library is currently being used by the following projects:
+
+- `NFD - NDN Forwarding Daemon <https://github.com/named-data/NFD>`_
+- `NLSR - Named-data Link-State Routing protocol <https://github.com/named-data/NLSR>`_
+- `ndn-tools - Essential NDN command-line tools <https://github.com/named-data/ndn-tools>`_
+- `repo-ng - Next generation of NDN repository <https://github.com/named-data/repo-ng>`_
+- `ChronoSync - Sync library for multiuser realtime applications <https://github.com/named-data/ChronoSync>`_
+- `PSync - Partial and full synchronization library <https://github.com/named-data/PSync>`_
+- `ndn-traffic-generator - Traffic generator for NDN <https://github.com/named-data/ndn-traffic-generator>`_
+- `NAC - Name-based Access Control <https://github.com/named-data/name-based-access-control>`_
+- `NDNS - Domain Name Service for NDN <https://github.com/named-data/ndns>`_
 
 .. _aiohttp-installation:
 
