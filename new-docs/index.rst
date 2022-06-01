@@ -9,7 +9,7 @@ NDN C++ library with eXperimental eXtensions.
 
 
 ndn-cxx Projects
-============
+=================
 ndn-cxx is a C++14 library implementing Named Data Networking (NDN) primitives that can be used to write various NDN applications. The library is currently being used by the following projects:
 
 - `NFD - NDN Forwarding Daemon <https://github.com/named-data/NFD>`_
@@ -22,218 +22,40 @@ ndn-cxx is a C++14 library implementing Named Data Networking (NDN) primitives t
 - `NAC - Name-based Access Control <https://github.com/named-data/name-based-access-control>`_
 - `NDNS - Domain Name Service for NDN <https://github.com/named-data/ndns>`_
 
-.. _aiohttp-installation:
+ndn-cxx Recommended Documentation
+==================================
 
-Library Installation
-====================
+- Dependencies/Setup
+- Getting Started with ndn-cxx
+- Tutorials
+- `Specifications <https://named-data.net/doc/ndn-cxx/current/specs.html>`_
+- `Man pages <https://named-data.net/doc/ndn-cxx/current/manpages.html>`_
 
-.. code-block:: bash
 
-   $ pip install aiohttp
 
-You may want to install *optional* :term:`cchardet` library as faster
-replacement for :term:`charset-normalizer`:
-
-.. code-block:: bash
-
-   $ pip install cchardet
-
-For speeding up DNS resolving by client API you may install
-:term:`aiodns` as well.
-This option is highly recommended:
-
-.. code-block:: bash
-
-   $ pip install aiodns
-
-Installing speedups altogether
+Additional Documentation
 ------------------------------
+- `API documentation (doxygen) <https://named-data.net/doc/ndn-cxx/current/doxygen/annotated.html>`_
+- `ndn-cxx Code Style and Coding Guidelines <https://named-data.net/doc/ndn-cxx/current/code-style.html>`_
+- `Release Notes <https://named-data.net/doc/ndn-cxx/current/RELEASE_NOTES.html>`_
+- `All ndn-cxx Releases <https://named-data.net/doc/ndn-cxx/current/releases.html>`_
 
-The following will get you ``aiohttp`` along with :term:`cchardet`,
-:term:`aiodns` and ``Brotli`` in one bundle. No need to type
-separate commands anymore!
 
-.. code-block:: bash
+License
+=========
 
-   $ pip install aiohttp[speedups]
-
-Getting Started
-===============
-
-Client example
---------------
-
-.. code-block:: python
-
-  import aiohttp
-  import asyncio
-
-  async def main():
-
-      async with aiohttp.ClientSession() as session:
-          async with session.get('http://python.org') as response:
-
-              print("Status:", response.status)
-              print("Content-type:", response.headers['content-type'])
-
-              html = await response.text()
-              print("Body:", html[:15], "...")
-
-  loop = asyncio.get_event_loop()
-  loop.run_until_complete(main())
-
-This prints:
-
-.. code-block:: text
-
-    Status: 200
-    Content-type: text/html; charset=utf-8
-    Body: <!doctype html> ...
-
-Coming from :term:`requests` ? Read :ref:`why we need so many lines <aiohttp-request-lifecycle>`.
-
-Server example:
-----------------
-
-.. code-block:: python
-
-    from aiohttp import web
-
-    async def handle(request):
-        name = request.match_info.get('name', "Anonymous")
-        text = "Hello, " + name
-        return web.Response(text=text)
-
-    app = web.Application()
-    app.add_routes([web.get('/', handle),
-                    web.get('/{name}', handle)])
-
-    if __name__ == '__main__':
-        web.run_app(app)
-
-
-For more information please visit :ref:`aiohttp-client` and
-:ref:`aiohttp-web` pages.
-
-What's new in aiohttp 3?
-========================
-
-Go to :ref:`aiohttp_whats_new_3_0` page for aiohttp 3.0 major release
-changes.
-
-
-Tutorial
-========
-
-:ref:`Polls tutorial <aiohttp-demos-polls-beginning>`
-
-
-Source code
-===========
-
-The project is hosted on GitHub_
-
-Please feel free to file an issue on the `bug tracker
-<https://github.com/aio-libs/aiohttp/issues>`_ if you have found a bug
-or have some suggestion in order to improve the library.
-
-The library uses `Azure Pipelines <https://dev.azure.com/aio-libs/aiohttp/_build>`_ for
-Continuous Integration.
-
-
-Dependencies
-============
-
-- Python 3.7+
-- *async_timeout*
-- *charset-normalizer*
-- *multidict*
-- *yarl*
-- *Optional* :term:`cchardet` as faster replacement for
-  :term:`charset-normalizer`.
-
-  Install it explicitly via:
-
-  .. code-block:: bash
-
-     $ pip install cchardet
-
-- *Optional* :term:`aiodns` for fast DNS resolving. The
-  library is highly recommended.
-
-  .. code-block:: bash
-
-     $ pip install aiodns
-
-- *Optional* :term:`Brotli` for brotli (:rfc:`7932`) client compression support.
-
-  .. code-block:: bash
-
-     $ pip install Brotli
-
-
-Communication channels
-======================
-
-*aio-libs discourse group*: https://aio-libs.discourse.group
-
-Feel free to post your questions and ideas here.
-
-*gitter chat* https://gitter.im/aio-libs/Lobby
-
-We support `Stack Overflow
-<https://stackoverflow.com/questions/tagged/aiohttp>`_.
-Please add *aiohttp* tag to your question there.
-
-Contributing
-============
-
-Please read the :ref:`instructions for contributors<aiohttp-contributing>`
-before making a Pull Request.
-
-
-Authors and License
-===================
-
-The ``aiohttp`` package is written mostly by Nikolay Kim and Andrew Svetlov.
-
-It's *Apache 2* licensed and freely available.
-
-Feel free to improve this package and send a pull request to GitHub_.
-
-
-.. _aiohttp-backward-compatibility-policy:
-
-Policy for Backward Incompatible Changes
-========================================
-
-*aiohttp* keeps backward compatibility.
-
-After deprecating some *Public API* (method, class, function argument,
-etc.) the library guarantees the usage of *deprecated API* is still
-allowed at least for a year and half after publishing new release with
-deprecation.
-
-All deprecations are reflected in documentation and raises
-:exc:`DeprecationWarning`.
-
-Sometimes we are forced to break our own rule for the sake of very strong
-reason.  Most likely the reason is a critical bug which cannot be
-solved without major API change, but we are working hard for keeping
-these changes as rare as possible.
+ndn-cxx is an open source project licensed under the LGPL version 3. 
+For more information about the license, refer to `COPYING.md <https://github.com/named-data/ndn-cxx/blob/master/COPYING.md>`_.
 
 
 Table Of Contents
-=================
+==================
 
 .. toctree::
    :name: mastertoc
    :maxdepth: 2
 
-   client
-   web
-   utilities
+   start
+   examples
    faq
-   misc
-   external
    contributing

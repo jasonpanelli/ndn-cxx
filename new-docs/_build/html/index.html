@@ -15,6 +15,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/ndn-plain.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
  
@@ -52,160 +53,29 @@
 <li><p><a class="reference external" href="https://github.com/named-data/ndns">NDNS - Domain Name Service for NDN</a></p></li>
 </ul>
 </section>
-<section id="library-installation">
-<span id="aiohttp-installation"></span><h2>Library Installation<a class="headerlink" href="#library-installation" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install aiohttp
-</pre></div>
-</div>
-<p>You may want to install <em>optional</em> <span class="xref std std-term">cchardet</span> library as faster
-replacement for <span class="xref std std-term">charset-normalizer</span>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install cchardet
-</pre></div>
-</div>
-<p>For speeding up DNS resolving by client API you may install
-<span class="xref std std-term">aiodns</span> as well.
-This option is highly recommended:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install aiodns
-</pre></div>
-</div>
-<section id="installing-speedups-altogether">
-<h3>Installing speedups altogether<a class="headerlink" href="#installing-speedups-altogether" title="Permalink to this heading">¶</a></h3>
-<p>The following will get you <code class="docutils literal notranslate"><span class="pre">aiohttp</span></code> along with <span class="xref std std-term">cchardet</span>,
-<span class="xref std std-term">aiodns</span> and <code class="docutils literal notranslate"><span class="pre">Brotli</span></code> in one bundle. No need to type
-separate commands anymore!</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install aiohttp<span class="o">[</span>speedups<span class="o">]</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h2>
-<section id="client-example">
-<h3>Client example<a class="headerlink" href="#client-example" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">aiohttp</span>
-<span class="kn">import</span> <span class="nn">asyncio</span>
-
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-
-    <span class="k">async</span> <span class="k">with</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
-        <span class="k">async</span> <span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://python.org&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
-
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Content-type:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;content-type&#39;</span><span class="p">])</span>
-
-            <span class="n">html</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Body:&quot;</span><span class="p">,</span> <span class="n">html</span><span class="p">[:</span><span class="mi">15</span><span class="p">],</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
-
-<span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
-<span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
-</pre></div>
-</div>
-<p>This prints:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Status: 200
-Content-type: text/html; charset=utf-8
-Body: &lt;!doctype html&gt; ...
-</pre></div>
-</div>
-<p>Coming from <span class="xref std std-term">requests</span> ? Read <span class="xref std std-ref">why we need so many lines</span>.</p>
-</section>
-<section id="server-example">
-<h3>Server example:<a class="headerlink" href="#server-example" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">web</span>
-
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">match_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s2">&quot;Anonymous&quot;</span><span class="p">)</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="n">name</span>
-    <span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">()</span>
-<span class="n">app</span><span class="o">.</span><span class="n">add_routes</span><span class="p">([</span><span class="n">web</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">handle</span><span class="p">),</span>
-                <span class="n">web</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/</span><span class="si">{name}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">handle</span><span class="p">)])</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">web</span><span class="o">.</span><span class="n">run_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>For more information please visit <span class="xref std std-ref">aiohttp-client</span> and
-<span class="xref std std-ref">aiohttp-web</span> pages.</p>
-</section>
-</section>
-<section id="what-s-new-in-aiohttp-3">
-<h2>What’s new in aiohttp 3?<a class="headerlink" href="#what-s-new-in-aiohttp-3" title="Permalink to this heading">¶</a></h2>
-<p>Go to <span class="xref std std-ref">aiohttp_whats_new_3_0</span> page for aiohttp 3.0 major release
-changes.</p>
-</section>
-<section id="tutorial">
-<h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading">¶</a></h2>
-<p><a class="reference external" href="https://aiohttp-demos.readthedocs.io/en/latest/index.html#aiohttp-demos-polls-beginning" title="(in aiohttp-demos v0.2)"><span class="xref std std-ref">Polls tutorial</span></a></p>
-</section>
-<section id="source-code">
-<h2>Source code<a class="headerlink" href="#source-code" title="Permalink to this heading">¶</a></h2>
-<p>The project is hosted on <a class="reference external" href="https://github.com/named-data/ndn-cxx">GitHub</a></p>
-<p>Please feel free to file an issue on the <a class="reference external" href="https://github.com/aio-libs/aiohttp/issues">bug tracker</a> if you have found a bug
-or have some suggestion in order to improve the library.</p>
-<p>The library uses <a class="reference external" href="https://dev.azure.com/aio-libs/aiohttp/_build">Azure Pipelines</a> for
-Continuous Integration.</p>
-</section>
-<section id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
-<ul>
-<li><p>Python 3.7+</p></li>
-<li><p><em>async_timeout</em></p></li>
-<li><p><em>charset-normalizer</em></p></li>
-<li><p><em>multidict</em></p></li>
-<li><p><em>yarl</em></p></li>
-<li><p><em>Optional</em> <span class="xref std std-term">cchardet</span> as faster replacement for
-<span class="xref std std-term">charset-normalizer</span>.</p>
-<p>Install it explicitly via:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install cchardet
-</pre></div>
-</div>
-</li>
-<li><p><em>Optional</em> <span class="xref std std-term">aiodns</span> for fast DNS resolving. The
-library is highly recommended.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install aiodns
-</pre></div>
-</div>
-</li>
-<li><p><em>Optional</em> <span class="xref std std-term">Brotli</span> for brotli (<span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc7932.html"><strong>RFC 7932</strong></a>) client compression support.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install Brotli
-</pre></div>
-</div>
-</li>
+<section id="ndn-cxx-recommended-documentation">
+<h2>ndn-cxx Recommended Documentation<a class="headerlink" href="#ndn-cxx-recommended-documentation" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Dependencies/Setup</p></li>
+<li><p>Getting Started with ndn-cxx</p></li>
+<li><p>Tutorials</p></li>
+<li><p><a class="reference external" href="https://named-data.net/doc/ndn-cxx/current/specs.html">Specifications</a></p></li>
+<li><p><a class="reference external" href="https://named-data.net/doc/ndn-cxx/current/manpages.html">Man pages</a></p></li>
+</ul>
+<section id="additional-documentation">
+<h3>Additional Documentation<a class="headerlink" href="#additional-documentation" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://named-data.net/doc/ndn-cxx/current/doxygen/annotated.html">API documentation (doxygen)</a></p></li>
+<li><p><a class="reference external" href="https://named-data.net/doc/ndn-cxx/current/code-style.html">ndn-cxx Code Style and Coding Guidelines</a></p></li>
+<li><p><a class="reference external" href="https://named-data.net/doc/ndn-cxx/current/RELEASE_NOTES.html">Release Notes</a></p></li>
+<li><p><a class="reference external" href="https://named-data.net/doc/ndn-cxx/current/releases.html">All ndn-cxx Releases</a></p></li>
 </ul>
 </section>
-<section id="communication-channels">
-<h2>Communication channels<a class="headerlink" href="#communication-channels" title="Permalink to this heading">¶</a></h2>
-<p><em>aio-libs discourse group</em>: <a class="reference external" href="https://aio-libs.discourse.group">https://aio-libs.discourse.group</a></p>
-<p>Feel free to post your questions and ideas here.</p>
-<p><em>gitter chat</em> <a class="reference external" href="https://gitter.im/aio-libs/Lobby">https://gitter.im/aio-libs/Lobby</a></p>
-<p>We support <a class="reference external" href="https://stackoverflow.com/questions/tagged/aiohttp">Stack Overflow</a>.
-Please add <em>aiohttp</em> tag to your question there.</p>
 </section>
-<section id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading">¶</a></h2>
-<p>Please read the <span class="xref std std-ref">instructions for contributors</span>
-before making a Pull Request.</p>
-</section>
-<section id="authors-and-license">
-<h2>Authors and License<a class="headerlink" href="#authors-and-license" title="Permalink to this heading">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">aiohttp</span></code> package is written mostly by Nikolay Kim and Andrew Svetlov.</p>
-<p>It’s <em>Apache 2</em> licensed and freely available.</p>
-<p>Feel free to improve this package and send a pull request to <a class="reference external" href="https://github.com/named-data/ndn-cxx">GitHub</a>.</p>
-</section>
-<section id="policy-for-backward-incompatible-changes">
-<span id="aiohttp-backward-compatibility-policy"></span><h2>Policy for Backward Incompatible Changes<a class="headerlink" href="#policy-for-backward-incompatible-changes" title="Permalink to this heading">¶</a></h2>
-<p><em>aiohttp</em> keeps backward compatibility.</p>
-<p>After deprecating some <em>Public API</em> (method, class, function argument,
-etc.) the library guarantees the usage of <em>deprecated API</em> is still
-allowed at least for a year and half after publishing new release with
-deprecation.</p>
-<p>All deprecations are reflected in documentation and raises
-<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#DeprecationWarning" title="(in Python v3.10)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DeprecationWarning</span></code></a>.</p>
-<p>Sometimes we are forced to break our own rule for the sake of very strong
-reason.  Most likely the reason is a critical bug which cannot be
-solved without major API change, but we are working hard for keeping
-these changes as rare as possible.</p>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<p>ndn-cxx is an open source project licensed under the LGPL version 3.
+For more information about the license, refer to <a class="reference external" href="https://github.com/named-data/ndn-cxx/blob/master/COPYING.md">COPYING.md</a>.</p>
 </section>
 <section id="table-of-contents">
 <h2>Table Of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h2>
@@ -220,6 +90,9 @@ these changes as rare as possible.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="#">
+              <img class="logo" src="_static/ndn-plain.svg" alt="Logo"/>
+            </a></p>
 <h1 class="logo"><a href="#">ndn-cxx</a></h1>
 
 
