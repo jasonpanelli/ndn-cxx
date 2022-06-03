@@ -27,9 +27,6 @@ ndn-cxx is a C++14 library implementing Named Data Networking (NDN) primitives t
 ndn-cxx Recommended Documentation
 ==================================
 
-- Dependencies/Setup
-- Getting Started with ndn-cxx
-- Tutorials
 - `Specifications <https://named-data.net/doc/ndn-cxx/current/specs.html>`_
 - `Man pages <https://named-data.net/doc/ndn-cxx/current/manpages.html>`_
 
