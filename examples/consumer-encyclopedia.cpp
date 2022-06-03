@@ -72,12 +72,8 @@ public:
     }
 
     Name interestName(dataName);
-    interestName.appendVersion();
 
     Interest interest(interestName);
-    interest.setMustBeFresh(true);
-    interest.setInterestLifetime(6_s); // The default is 4 seconds
-
 
     std::cout << "Sending Interest " << interest << std::endl;
     m_face.expressInterest(interest,
