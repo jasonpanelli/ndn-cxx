@@ -1,49 +1,113 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
-    <title>Getting Started &#8212; ndn-cxx  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/aiohttp.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/css/logo-adjustments.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; ndn-cxx  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/logo-adjustments.css" type="text/css" />
     <link rel="shortcut icon" href="_static/ndn-plain.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Examples" href="examples.html" />
-    <link rel="prev" title="Welcome to ndn-cxx" href="index.html" />
- 
-<link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="prev" title="Welcome to ndn-cxx" href="index.html" /> 
+</head>
 
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ndn-cxx
+            <img src="_static/ndn-plain.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#supported-platforms">Supported platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#required">Required</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional">Optional</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#build">Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-examples">Running Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-nfd">Install NFD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#install-nfd-on-ubuntu-linux-using-the-ndn-ppa-repository">Install NFD on Ubuntu Linux using the NDN PPA repository</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preliminary-steps-if-you-have-not-used-ppa-packages-before">Preliminary steps if you have not used PPA packages before</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-the-ndn-ppa">Adding the NDN PPA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-nfd-and-other-ndn-packages">Installing NFD and other NDN packages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#building-from-source">Building from source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#downloading-from-git">Downloading from git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Build</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Running Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debug-symbols">Debug symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-the-compiler">Customizing the compiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-documentation">Building the documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-build">Development build</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
 
-<link rel="canonical" href="http://docs.ndn-cxx.org/en/stable/start.html"/>
+        </div>
+      </div>
+    </nav>
 
-<meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-<link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet">
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ndn-cxx</a>
+      </nav>
 
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/start.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
 <section id="supported-platforms">
-<h2>Supported platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this heading">¶</a></h2>
+<h2>Supported platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this heading"></a></h2>
 <p>ndn-cxx is built against a continuous integration system and has been tested on the
 following platforms:</p>
 <ul class="simple">
@@ -67,9 +131,9 @@ supported:</p>
 </ul>
 </section>
 <section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
 <section id="required">
-<h3>Required<a class="headerlink" href="#required" title="Permalink to this heading">¶</a></h3>
+<h3>Required<a class="headerlink" href="#required" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>GCC &gt;= 7.4 or clang &gt;= 6.0 (if you are on Linux or FreeBSD)</p></li>
 <li><p>Xcode &gt;= 11.3 or corresponding version of Command Line Tools (if you are on macOS)</p></li>
@@ -128,7 +192,7 @@ with Homebrew, remember to reinstall all packages.</p>
 </ul>
 </section>
 <section id="optional">
-<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this heading">¶</a></h3>
+<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this heading"></a></h3>
 <p>To build tutorials, man pages, and API documentation the following additional dependencies
 need to be installed:</p>
 <ul class="simple">
@@ -179,7 +243,7 @@ sudo pip3 install sphinx sphinxcontrib-doxylink
 </section>
 </section>
 <section id="build">
-<h2>Build<a class="headerlink" href="#build" title="Permalink to this heading">¶</a></h2>
+<h2>Build<a class="headerlink" href="#build" title="Permalink to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>These are instructions for regular builds of ndn-cxx (release mode). If you are
@@ -264,7 +328,7 @@ available memory divided by 1.5 GB (e.g., <code class="docutils literal notransl
 should avoid memory thrashing and result in faster compilation.</p>
 </section>
 <section id="running-examples">
-<h2>Running Examples<a class="headerlink" href="#running-examples" title="Permalink to this heading">¶</a></h2>
+<h2>Running Examples<a class="headerlink" href="#running-examples" title="Permalink to this heading"></a></h2>
 <p>By default, the examples in the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory will not be built. To enable
 them, pass <code class="docutils literal notranslate"><span class="pre">--with-examples</span></code> during the configuration step:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./waf configure --with-examples  <span class="c1"># on CentOS, add --without-pch</span>
@@ -274,7 +338,7 @@ sudo ldconfig  <span class="c1"># on Linux only</span>
 </pre></div>
 </div>
 <section id="install-nfd">
-<h3>Install NFD<a class="headerlink" href="#install-nfd" title="Permalink to this heading">¶</a></h3>
+<h3>Install NFD<a class="headerlink" href="#install-nfd" title="Permalink to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>These instructions are copied from <a class="reference external" href="https://named-data.net/doc/NFD/current/INSTALL.html">Getting started with NFD</a>. Please refer to this source for extra information on NFD.</p>
@@ -282,13 +346,13 @@ sudo ldconfig  <span class="c1"># on Linux only</span>
 </section>
 </section>
 <section id="install-nfd-on-ubuntu-linux-using-the-ndn-ppa-repository">
-<h2>Install NFD on Ubuntu Linux using the NDN PPA repository<a class="headerlink" href="#install-nfd-on-ubuntu-linux-using-the-ndn-ppa-repository" title="Permalink to this heading">¶</a></h2>
+<h2>Install NFD on Ubuntu Linux using the NDN PPA repository<a class="headerlink" href="#install-nfd-on-ubuntu-linux-using-the-ndn-ppa-repository" title="Permalink to this heading"></a></h2>
 <p>NFD binaries and related tools for supported versions of Ubuntu can be installed using
 PPA packages from the <strong>named-data</strong> repository.  First, you will need to add the
 <code class="docutils literal notranslate"><span class="pre">named-data/ppa</span></code> repository to the binary package sources and update the list of
 available packages.</p>
 <section id="preliminary-steps-if-you-have-not-used-ppa-packages-before">
-<h3>Preliminary steps if you have not used PPA packages before<a class="headerlink" href="#preliminary-steps-if-you-have-not-used-ppa-packages-before" title="Permalink to this heading">¶</a></h3>
+<h3>Preliminary steps if you have not used PPA packages before<a class="headerlink" href="#preliminary-steps-if-you-have-not-used-ppa-packages-before" title="Permalink to this heading"></a></h3>
 <p>To simplify adding new PPA repositories, Ubuntu provides the <code class="docutils literal notranslate"><span class="pre">add-apt-repository</span></code> tool,
 which is not installed by default on some systems.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span>
@@ -296,7 +360,7 @@ which is not installed by default on some systems.</p>
 </div>
 </section>
 <section id="adding-the-ndn-ppa">
-<h3>Adding the NDN PPA<a class="headerlink" href="#adding-the-ndn-ppa" title="Permalink to this heading">¶</a></h3>
+<h3>Adding the NDN PPA<a class="headerlink" href="#adding-the-ndn-ppa" title="Permalink to this heading"></a></h3>
 <p>After installing <code class="docutils literal notranslate"><span class="pre">add-apt-repository</span></code>, run the following commands to add the <a class="reference external" href="https://launchpad.net/~named-data/+archive/ppa">NDN PPA
 repository</a>:</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="n">ppa</span><span class="p">:</span><span class="n">named</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">ppa</span>
@@ -305,7 +369,7 @@ repository</a>:</p>
 </div>
 </section>
 <section id="installing-nfd-and-other-ndn-packages">
-<h3>Installing NFD and other NDN packages<a class="headerlink" href="#installing-nfd-and-other-ndn-packages" title="Permalink to this heading">¶</a></h3>
+<h3>Installing NFD and other NDN packages<a class="headerlink" href="#installing-nfd-and-other-ndn-packages" title="Permalink to this heading"></a></h3>
 <p>After you have added the <a class="reference external" href="https://launchpad.net/~named-data/+archive/ppa">NDN PPA repository</a>, NFD and other NDN packages can be easily
 installed either using <code class="docutils literal notranslate"><span class="pre">apt</span></code>, as shown below, or any other compatible package manager.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">nfd</span>
@@ -315,9 +379,9 @@ installed either using <code class="docutils literal notranslate"><span class="p
 </section>
 </section>
 <section id="building-from-source">
-<h2>Building from source<a class="headerlink" href="#building-from-source" title="Permalink to this heading">¶</a></h2>
+<h2>Building from source<a class="headerlink" href="#building-from-source" title="Permalink to this heading"></a></h2>
 <section id="downloading-from-git">
-<h3>Downloading from git<a class="headerlink" href="#downloading-from-git" title="Permalink to this heading">¶</a></h3>
+<h3>Downloading from git<a class="headerlink" href="#downloading-from-git" title="Permalink to this heading"></a></h3>
 <p>The first step is to obtain the source code for NFD and its main dependency, the
 <em>ndn-cxx</em> library. If you do not want a development version of NFD, make sure you
 checkout the correct release tag (e.g., <code class="docutils literal notranslate"><span class="pre">*-0.7.1</span></code>) from both repositories.</p>
@@ -337,7 +401,7 @@ tarball) of NFD and ndn-cxx instead.</p>
 </div>
 </section>
 <section id="id1">
-<h3>Prerequisites<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<h3>Prerequisites<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>Install the <a class="reference external" href="https://named-data.net/doc/ndn-cxx/current/INSTALL.html">ndn-cxx library</a>
 and its prerequisites.</p>
 <p>On Linux, NFD needs the following dependencies to enable optional features:</p>
@@ -356,7 +420,7 @@ sudo dnf install libpcap-devel systemd-devel
 </ul>
 </section>
 <section id="id2">
-<h3>Build<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<h3>Build<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>The following commands can be used to build and install NFD from source:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./waf configure  <span class="c1"># on CentOS, add --without-pch</span>
 ./waf
@@ -382,11 +446,11 @@ and start over.</p>
 </section>
 </section>
 <section id="id3">
-<h2>Running Examples<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2>Running Examples<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>At this point, you should be mostly set up to run the examples. Please refer to the <a class="reference internal" href="examples.html"><span class="doc">Examples</span></a> page to get started on some ndn-cxx examples!</p>
 </section>
 <section id="debug-symbols">
-<h2>Debug symbols<a class="headerlink" href="#debug-symbols" title="Permalink to this heading">¶</a></h2>
+<h2>Debug symbols<a class="headerlink" href="#debug-symbols" title="Permalink to this heading"></a></h2>
 <p>The default compiler flags include debug symbols in binaries. This should provide
 more meaningful debugging information if ndn-cxx or your application crashes.</p>
 <p>If this is not desired, the default flags can be overridden to disable debug symbols.
@@ -399,7 +463,7 @@ sudo ./waf install
 </div>
 </section>
 <section id="customizing-the-compiler">
-<h2>Customizing the compiler<a class="headerlink" href="#customizing-the-compiler" title="Permalink to this heading">¶</a></h2>
+<h2>Customizing the compiler<a class="headerlink" href="#customizing-the-compiler" title="Permalink to this heading"></a></h2>
 <p>To build ndn-cxx with a different compiler (rather than the platform default), set the
 <code class="docutils literal notranslate"><span class="pre">CXX</span></code> environment variable to point to the compiler binary. For example, to build
 with clang on Linux, use the following:</p>
@@ -408,7 +472,7 @@ with clang on Linux, use the following:</p>
 </div>
 </section>
 <section id="building-the-documentation">
-<h2>Building the documentation<a class="headerlink" href="#building-the-documentation" title="Permalink to this heading">¶</a></h2>
+<h2>Building the documentation<a class="headerlink" href="#building-the-documentation" title="Permalink to this heading"></a></h2>
 <p>Tutorials and API documentation can be built using the following commands:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># Full set of documentation (tutorials + API) in build/docs</span>
 ./waf docs
@@ -429,7 +493,7 @@ during the <code class="docutils literal notranslate"><span class="pre">./waf</s
 <p>For further details, please refer to <code class="docutils literal notranslate"><span class="pre">./waf</span> <span class="pre">--help</span></code>.</p>
 </section>
 <section id="development-build">
-<span id="id4"></span><h2>Development build<a class="headerlink" href="#development-build" title="Permalink to this heading">¶</a></h2>
+<span id="id4"></span><h2>Development build<a class="headerlink" href="#development-build" title="Permalink to this heading"></a></h2>
 <p>The following is the suggested build procedure for development builds:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>./waf configure --debug --with-tests  <span class="c1"># on CentOS, add --without-pch</span>
 ./waf
@@ -444,140 +508,38 @@ will be treated as errors. This default behavior can be overridden by setting th
 ...
 </pre></div>
 </div>
-<div class="toctree-wrapper compound" id="mastertoc">
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#supported-platforms">Supported platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#build">Build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-examples">Running Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-nfd-on-ubuntu-linux-using-the-ndn-ppa-repository">Install NFD on Ubuntu Linux using the NDN PPA repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-from-source">Building from source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">Running Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#debug-symbols">Debug symbols</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#customizing-the-compiler">Customizing the compiler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-the-documentation">Building the documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#development-build">Development build</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-</ul>
-</div>
 </section>
 </section>
 
 
+           </div>
           </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to ndn-cxx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright ndn-cxx contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/ndn-plain.svg" alt="Logo"/>
-            </a></p>
-<h1 class="logo"><a href="index.html">ndn-cxx</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-<p class="blurb">NDN C++ library with eXperimental eXtensions</p>
-
-
-
-
-<p>
-<iframe src="https://ghbtns.com/github-btn.html?user=named-data&repo=ndn-cxx&type=star&count=true&size=large&v=2"
-  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
-</p>
-
-
-
-
-
-
-
-
-<ul class="badges">
-  
-  <li><a href="https://github.com/named-data/ndn-cxx/actions/workflows/ci.yml">
-    <img src="https://github.com/named-data/ndn-cxx/actions/workflows/ci.yml/badge.svg"
-	 alt="Azure Pipelines CI status"
-	 height="20"
-    />
-  </a>
-  
-  <li><a href="https://github.com/named-data/ndn-cxx/actions/workflows/docs.yml">
-    <img src="https://github.com/named-data/ndn-cxx/actions/workflows/docs.yml/badge.svg"
-	 alt="Docs"
-	 height="20"
-    />
-  </a>
-  
-  <li><a href="https://img.shields.io/badge/C%2B%2B-14-blue">
-    <img src="https://img.shields.io/badge/C%2B%2B-14-blue"
-	 alt="Language"
-	 height="20"
-    />
-  </a>
-  
-  <li><a href="https://img.shields.io/github/v/tag/named-data/ndn-cxx?label=Latest%20version">
-    <img src="https://img.shields.io/github/v/tag/named-data/ndn-cxx?label=Latest%20version"
-	 alt="Latest version"
-	 height="20"
-    />
-  </a>
-  
-</ul>
-<h3>Navigation</h3>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#supported-platforms">Supported platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#build">Build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-examples">Running Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-nfd-on-ubuntu-linux-using-the-ndn-ppa-repository">Install NFD on Ubuntu Linux using the NDN PPA repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-from-source">Building from source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">Running Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#debug-symbols">Debug symbols</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#customizing-the-compiler">Customizing the compiler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-the-documentation">Building the documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#development-build">Development build</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-</ul>
-
-
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;ndn-cxx contributors.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.0</a>
-      
-      |
-      <a href="_sources/start.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-    <a href="https://github.com/named-data/ndn-cxx" class="github">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
-    </a>
-    
-
-    
-  </body>
+</body>
 </html>

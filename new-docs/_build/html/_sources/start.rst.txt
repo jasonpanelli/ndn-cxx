@@ -440,14 +440,14 @@ will be treated as errors. This default behavior can be overridden by setting th
     ...
 
 
-Table Of Contents
-==================
+.. Table Of Contents
+.. ==================
 
-.. toctree::
-   :name: mastertoc
-   :maxdepth: 2
+.. .. toctree::
+..    :name: mastertoc
+..    :maxdepth: 2
 
-   start
-   examples
-   faq
-   contributing
+..    start
+..    examples
+..    faq
+..    contributing

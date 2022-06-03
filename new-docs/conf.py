@@ -99,43 +99,43 @@ exclude_patterns = ["_build"]
 
 highlight_language = "python3"
 
-html_theme = "aiohttp_theme"
+html_theme = "sphinx_rtd_theme"
 
-html_theme_options = {
-    "description": "NDN C++ library with eXperimental eXtensions",
-    "canonical_url": "http://docs.ndn-cxx.org/en/stable/",
-    "github_user": github_repo_org,
-    "github_repo": github_repo_name,
-    "github_button": True,
-    "github_type": "star",
-    "github_banner": True,
-    "badges": [
-        {
-            "image": f"{github_repo_url}/actions/workflows/ci.yml/badge.svg",
-            "target": f"{github_repo_url}/actions/workflows/ci.yml",
-            "height": "20",
-            "alt": "Azure Pipelines CI status",
-        },
-        {
-            "image": f"https://github.com/named-data/ndn-cxx/actions/workflows/docs.yml/badge.svg",
-            "target": f"https://github.com/named-data/ndn-cxx/actions/workflows/docs.yml",
-            "height": "20",
-            "alt": "Docs",
-        },
-        {
-            "image": f"https://img.shields.io/badge/C%2B%2B-14-blue",
-            "target": f"https://img.shields.io/badge/C%2B%2B-14-blue",
-            "height": "20",
-            "alt": "Language",
-        },
-        {
-            "image": f"https://img.shields.io/github/v/tag/named-data/ndn-cxx?label=Latest%20version",
-            "target": f"https://img.shields.io/github/v/tag/named-data/ndn-cxx?label=Latest%20version",
-            "height": "20",
-            "alt": "Latest version",
-        },
-    ],
-}
+# html_theme_options = {
+#     "description": "NDN C++ library with eXperimental eXtensions",
+#     "canonical_url": "http://docs.ndn-cxx.org/en/stable/",
+#     "github_user": github_repo_org,
+#     "github_repo": github_repo_name,
+#     "github_button": True,
+#     "github_type": "star",
+#     "github_banner": True,
+#     "badges": [
+#         {
+#             "image": f"{github_repo_url}/actions/workflows/ci.yml/badge.svg",
+#             "target": f"{github_repo_url}/actions/workflows/ci.yml",
+#             "height": "20",
+#             "alt": "Azure Pipelines CI status",
+#         },
+#         {
+#             "image": f"https://github.com/named-data/ndn-cxx/actions/workflows/docs.yml/badge.svg",
+#             "target": f"https://github.com/named-data/ndn-cxx/actions/workflows/docs.yml",
+#             "height": "20",
+#             "alt": "Docs",
+#         },
+#         {
+#             "image": f"https://img.shields.io/badge/C%2B%2B-14-blue",
+#             "target": f"https://img.shields.io/badge/C%2B%2B-14-blue",
+#             "height": "20",
+#             "alt": "Language",
+#         },
+#         {
+#             "image": f"https://img.shields.io/github/v/tag/named-data/ndn-cxx?label=Latest%20version",
+#             "target": f"https://img.shields.io/github/v/tag/named-data/ndn-cxx?label=Latest%20version",
+#             "height": "20",
+#             "alt": "Latest version",
+#         },
+#     ],
+# }
 
 html_css_files = [
     "css/logo-adjustments.css",
@@ -292,66 +292,3 @@ texinfo_documents = [
         "Miscellaneous",
     ),
 ]
-
-# # Documents to append as an appendix to all manuals.
-# # texinfo_appendices = []
-
-# # If false, no module index is generated.
-# # texinfo_domain_indices = True
-
-# # How to display URL addresses: 'footnote', 'no', or 'inline'.
-# # texinfo_show_urls = 'footnote'
-
-# # If true, do not generate a @detailmenu in the "Top" node's menu.
-# # texinfo_no_detailmenu = False
-
-
-# # -------------------------------------------------------------------------
-# nitpicky = True
-# nitpick_ignore = [
-#     ("py:mod", "aiohttp"),  # undocumented, no `.. currentmodule:: aiohttp` in docs
-#     ("py:class", "aiohttp.SimpleCookie"),  # undocumented
-#     ("py:class", "aiohttp.web.RequestHandler"),  # undocumented
-#     ("py:class", "aiohttp.NamedPipeConnector"),  # undocumented
-#     ("py:meth", "aiohttp.ClientSession.request"),  # undocumented
-#     ("py:class", "aiohttp.protocol.HttpVersion"),  # undocumented
-#     ("py:class", "aiohttp.ClientRequest"),  # undocumented
-#     ("py:class", "aiohttp.payload.Payload"),  # undocumented
-#     ("py:class", "aiohttp.abc.AbstractResolver"),  # undocumented
-#     ("py:func", "aiohttp.ws_connect"),  # undocumented
-#     ("py:meth", "start"),  # undocumented
-#     ("py:exc", "aiohttp.ClientHttpProxyError"),  # undocumented
-#     ("py:class", "asyncio.AbstractServer"),  # undocumented
-#     ("py:mod", "aiohttp.test_tools"),  # undocumented
-#     ("py:class", "list of pairs"),  # undocumented
-#     ("py:class", "aiohttp.protocol.HttpVersion"),  # undocumented
-#     ("py:meth", "aiohttp.ClientSession.request"),  # undocumented
-#     ("py:class", "aiohttp.StreamWriter"),  # undocumented
-#     ("py:attr", "aiohttp.StreamResponse.body"),  # undocumented
-#     ("py:class", "aiohttp.payload.StringPayload"),  # undocumented
-#     ("py:meth", "aiohttp.web.Application.copy"),  # undocumented
-#     ("py:meth", "asyncio.AbstractEventLoop.create_server"),  # undocumented
-#     ("py:data", "aiohttp.log.server_logger"),  # undocumented
-#     ("py:data", "aiohttp.log.access_logger"),  # undocumented
-#     ("py:data", "aiohttp.helpers.AccessLogger"),  # undocumented
-#     ("py:attr", "helpers.AccessLogger.LOG_FORMAT"),  # undocumented
-#     ("py:meth", "aiohttp.web.AbstractRoute.url"),  # undocumented
-#     ("py:class", "aiohttp.web.MatchedSubAppResource"),  # undocumented
-#     ("py:attr", "body"),  # undocumented
-#     ("py:class", "socket.socket"),  # undocumented
-#     ("py:class", "socket.AddressFamily"),  # undocumented
-#     ("py:obj", "logging.DEBUG"),  # undocumented
-#     ("py:class", "aiohttp.abc.AbstractAsyncAccessLogger"),  # undocumented
-#     ("py:meth", "aiohttp.web.Response.write_eof"),  # undocumented
-#     ("py:meth", "aiohttp.payload.Payload.set_content_disposition"),  # undocumented
-#     ("py:class", "cgi.FieldStorage"),  # undocumented
-#     ("py:meth", "aiohttp.web.UrlDispatcher.register_resource"),  # undocumented
-#     ("py:func", "aiohttp_debugtoolbar.setup"),  # undocumented
-# ]
-
-# # -- Options for towncrier_draft extension -----------------------------------
-
-# towncrier_draft_autoversion_mode = "draft"  # or: 'sphinx-version', 'sphinx-release'
-# towncrier_draft_include_empty = True
-# towncrier_draft_working_directory = PROJECT_ROOT_DIR
-# # Not yet supported: towncrier_draft_config_path = 'pyproject.toml'  # relative to cwd

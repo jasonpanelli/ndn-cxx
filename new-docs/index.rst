@@ -2,6 +2,8 @@
 Welcome to ndn-cxx
 ==================
 
+|build-status| |docs| |language| |version|
+
 NDN C++ library with eXperimental eXtensions.
 
 .. _GitHub: https://github.com/named-data/ndn-cxx
@@ -48,6 +50,23 @@ ndn-cxx is an open source project licensed under the LGPL version 3.
 For more information about the license, refer to `COPYING.md <https://github.com/named-data/ndn-cxx/blob/master/COPYING.md>`_.
 
 
+.. |build-status| image:: https://github.com/named-data/ndn-cxx/actions/workflows/ci.yml/badge.svg
+    :alt: build status
+    :target: https://github.com/named-data/ndn-cxx/actions/workflows/ci.yml
+
+.. |docs| image:: https://github.com/named-data/ndn-cxx/actions/workflows/docs.yml/badge.svg
+    :alt: Documentation Status
+    :scale: 100%
+    :target: https://github.com/named-data/ndn-cxx/actions/workflows/docs.yml
+
+.. |language| image:: https://img.shields.io/badge/C%2B%2B-14-blue
+    :alt: Language
+    :target: https://img.shields.io/badge/C%2B%2B-14-blue
+
+.. |version| image:: https://img.shields.io/github/v/tag/named-data/ndn-cxx?label=Latest%20version
+    :alt: Latest Version
+    :target: https://img.shields.io/github/v/tag/named-data/ndn-cxx?label=Latest%20version
+
 Table Of Contents
 ==================
 
@@ -58,4 +77,3 @@ Table Of Contents
    start
    examples
    faq
-   contributing
