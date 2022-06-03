@@ -74,7 +74,9 @@ public:
     Name interestName(dataName);
 
     Interest interest(interestName);
+    interest.setMustBeFresh(true);
     interest.setInterestLifetime(6_s); // The default is 4 seconds
+
 
     std::cout << "Sending Interest " << interest << std::endl;
     m_face.expressInterest(interest,
@@ -94,11 +96,15 @@ private:
 
     m_validator.validate(data,
                          [] (const Data&) {
-                           std::cout << "Data conforms to trust schema" << std::endl;
+                           std::cout << "Data authenticated." << std::endl;
+
                          },
                          [] (const Data&, const security::ValidationError& error) {
                            std::cout << "Error authenticating data: " << error << std::endl;
                          });
+
+    // Buffer::const_iterator it = data.getContent().value_begin();
+    // for (; it != data.getContent().end(); it++) std::cout << (char) *it;
   }
 
   void

@@ -119,7 +119,7 @@ private:
 int
 main(int argc, char** argv)
 {
-  if (argc == 2 && (!strncmp(argv[1], "ndn", 3) || !strncmp(argv[1], "penguin", 7) || strncmp(argv[1], "dinosaur", 9))) {
+  if (argc == 2 && (!strncmp(argv[1], "ndn", 3) || !strncmp(argv[1], "penguin", 7) || !strncmp(argv[1], "dinosaur", 8))) {
     try {
       ndn::examples::Producer producer(argv[1]);
       producer.run();
