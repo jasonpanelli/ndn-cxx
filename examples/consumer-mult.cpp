@@ -62,16 +62,17 @@ public:
 
     std::string dataName;
     if (input == 1) {
-      dataName = "/example/ndn";
+      dataName = "/example/ndn/information";
     }
     else if (input == 2) {
-      dataName = "/example/penguin";
+      dataName = "/example/penguin/information";
     }
     else {
-      dataName = "/example/dinosaur";
+      dataName = "/example/dinosaur/information";
     }
 
     Name interestName(dataName);
+    interestName.appendVersion();
 
     Interest interest(interestName);
     interest.setMustBeFresh(true);
@@ -95,16 +96,16 @@ private:
     std::cout << "Received Data " << data << std::endl;
 
     m_validator.validate(data,
-                         [] (const Data&) {
-                           std::cout << "Data authenticated." << std::endl;
+                         [] (const Data& d) {
+                           std::cout << "\n\nYour requested information:\n" << std::endl;
+                           std::string output(reinterpret_cast<const char*>(d.getContent().value()),
+                                                           d.getContent().value_size());
+                           std::cout << output << std::endl;
 
                          },
                          [] (const Data&, const security::ValidationError& error) {
                            std::cout << "Error authenticating data: " << error << std::endl;
                          });
-
-    // Buffer::const_iterator it = data.getContent().value_begin();
-    // for (; it != data.getContent().end(); it++) std::cout << (char) *it;
   }
 
   void

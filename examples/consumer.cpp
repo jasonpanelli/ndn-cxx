@@ -63,9 +63,12 @@ private:
   {
     std::cout << "Received Data " << data << std::endl;
 
+
     m_validator.validate(data,
-                         [] (const Data&) {
+                         [] (const Data& d) {
                            std::cout << "Data conforms to trust schema" << std::endl;
+                           std::cout << "The received data: " << std::string(reinterpret_cast<const char*>(d.getContent().value()),
+                                        d.getContent().value_size()) << std::endl;
                          },
                          [] (const Data&, const security::ValidationError& error) {
                            std::cout << "Error authenticating data: " << error << std::endl;

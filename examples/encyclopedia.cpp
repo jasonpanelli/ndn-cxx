@@ -55,15 +55,13 @@ public:
   void
   run()
   {
-    m_face.setInterestFilter(dataName,
+    m_face.setInterestFilter(dataName + "/information",
                              std::bind(&Producer::onInterest, this, _1, _2),
                              nullptr, // RegisterPrefixSuccessCallback is optional
                              std::bind(&Producer::onRegisterFailed, this, _1, _2));
 
     // Set up our keychain to use identity and default keys for our data name
     auto cert = m_keyChain.getPib().getIdentity(dataName).getDefaultKey().getDefaultCertificate();
-    std::cout << "identity: " << m_keyChain.getPib().getIdentity(dataName).getName() << std::endl;
-    std::cout << "key: " << m_keyChain.getPib().getIdentity(dataName).getDefaultKey().getName() << std::endl;
 
     m_certServeHandle = m_face.setInterestFilter(security::extractIdentityFromCertName(cert.getName()),
                              [this, cert] (auto&&...) {
@@ -79,12 +77,12 @@ private:
   {
     std::cout << ">> I: " << interest << std::endl;
 
-    static const std::string content(content);
+    static const std::string c = content;
 
     // Create Data packet
     auto data = make_shared<Data>(interest.getName());
     data->setFreshnessPeriod(10_s);
-    data->setContent(make_span(reinterpret_cast<const uint8_t*>(content.data()), content.size()));
+    data->setContent(make_span(reinterpret_cast<const uint8_t*>(c.data()), c.size()));
 
     // Sign Data packet with identity
     m_keyChain.sign(*data, signingByIdentity(dataName));
