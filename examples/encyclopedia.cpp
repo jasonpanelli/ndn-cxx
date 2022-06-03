@@ -33,15 +33,37 @@ namespace examples {
 class Producer
 {
 public:
+  Producer(std::string argument)
+  {
+    if (argument == "ndn") {
+      dataName = "/example/ndn";
+      content = "NDN is a network layer protocol centered around naming data.";
+    }
+    else if (argument == "penguin") {
+      dataName = "/example/penguin";
+      content = "The emperor penguin is the largest of all penguins on Earth.";
+    }
+    else {
+      dataName = "/example/dinosaur";
+      content = "Dinosaurs inhabited the Earth a long time ago.";
+    }
+
+    std::cout << dataName << std::endl;
+    std::cout << content << std::endl;
+  }
+
   void
   run()
   {
-    m_face.setInterestFilter("/example/testApp/randomData",
+    m_face.setInterestFilter(dataName,
                              std::bind(&Producer::onInterest, this, _1, _2),
                              nullptr, // RegisterPrefixSuccessCallback is optional
                              std::bind(&Producer::onRegisterFailed, this, _1, _2));
 
-    auto cert = m_keyChain.getPib().getIdentity("/example/testApp").getDefaultKey().getDefaultCertificate();
+    // Set up our keychain to use identity and default keys for our data name
+    auto cert = m_keyChain.getPib().getIdentity(dataName).getDefaultKey().getDefaultCertificate();
+    std::cout << "identity: " << m_keyChain.getPib().getIdentity(dataName).getName() << std::endl;
+    std::cout << "key: " << m_keyChain.getPib().getIdentity(dataName).getDefaultKey().getName() << std::endl;
 
     m_certServeHandle = m_face.setInterestFilter(security::extractIdentityFromCertName(cert.getName()),
                              [this, cert] (auto&&...) {
@@ -57,31 +79,15 @@ private:
   {
     std::cout << ">> I: " << interest << std::endl;
 
-    static const std::string content("Hello, world!");
+    static const std::string content(content);
 
     // Create Data packet
     auto data = make_shared<Data>(interest.getName());
     data->setFreshnessPeriod(10_s);
     data->setContent(make_span(reinterpret_cast<const uint8_t*>(content.data()), content.size()));
 
-    // in order for the consumer application to be able to validate the packet, you need to setup
-    // the following keys:
-    // 1. Generate example trust anchor
-    //
-    //         ndnsec key-gen /example
-    //         ndnsec cert-dump -i /example > example-trust-anchor.cert
-    //
-    // 2. Create a key for the producer and sign it with the example trust anchor
-    //
-    //         ndnsec key-gen /example/testApp
-    //         ndnsec sign-req /example/testApp | ndnsec cert-gen -s /example -i example | ndnsec cert-install -
-
-    // Sign Data packet with default identity
-    // m_keyChain.sign(*data);
-    m_keyChain.sign(*data, signingByIdentity("/example/testApp"));
-    // m_keyChain.sign(*data, signingByKey(<keyName>));
-    // m_keyChain.sign(*data, signingByCertificate(<certName>));
-    // m_keyChain.sign(*data, signingWithSha256());
+    // Sign Data packet with identity
+    m_keyChain.sign(*data, signingByIdentity(dataName));
 
     // Return Data packet to the requester
     std::cout << "<< D: " << *data << std::endl;
@@ -96,6 +102,11 @@ private:
     m_face.shutdown();
   }
 
+  // Private member variables for the Producer class
+  std::string dataName;
+  std::string content;
+
+
 private:
   Face m_face;
   KeyChain m_keyChain;
@@ -108,13 +119,19 @@ private:
 int
 main(int argc, char** argv)
 {
-  try {
-    ndn::examples::Producer producer;
-    producer.run();
-    return 0;
+  if (argc == 2 && (!strncmp(argv[1], "ndn", 3) || !strncmp(argv[1], "penguin", 7) || strncmp(argv[1], "dinosaur", 9))) {
+    try {
+      ndn::examples::Producer producer(argv[1]);
+      producer.run();
+      return 0;
+    }
+    catch (const std::exception& e) {
+      std::cerr << "ERROR: " << e.what() << std::endl;
+      return 1;
+    }
   }
-  catch (const std::exception& e) {
-    std::cerr << "ERROR: " << e.what() << std::endl;
-    return 1;
+  else {
+    std::cerr << "USAGE: encyclopedia <type>\nValid types:\n\tndn\n\tpenguin\n\tdinosaur" << std::endl;
+    return 2;
   }
 }

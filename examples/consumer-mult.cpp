@@ -40,11 +40,40 @@ public:
   void
   run()
   {
-    Name interestName("/example/testApp/randomData");
-    interestName.appendVersion();
+    int input;
+    try
+    {
+      std::cout << "What data would you like?\n";
+      std::cout << "[1] Information about NDN\n";
+      std::cout << "[2] Information about the penguins\n";
+      std::cout << "[3] Information about dinosaurs\n";
+      std::cout << "Your answer: ";
+
+      std::string s;
+      getline(std::cin, s);
+      input = std::stoi(s);
+      if (input < 1 || input >3) throw 1;
+    }
+    catch (...)
+    {
+      std::cerr << "You must answer with 1, 2, or 3.\n";
+      return;
+    }
+
+    std::string dataName;
+    if (input == 1) {
+      dataName = "/example/ndn";
+    }
+    else if (input == 2) {
+      dataName = "/example/penguin";
+    }
+    else {
+      dataName = "/example/dinosaur";
+    }
+
+    Name interestName(dataName);
 
     Interest interest(interestName);
-    interest.setMustBeFresh(true);
     interest.setInterestLifetime(6_s); // The default is 4 seconds
 
     std::cout << "Sending Interest " << interest << std::endl;
